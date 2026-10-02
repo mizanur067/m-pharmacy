@@ -1,11 +1,11 @@
 import { FormEvent, useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authenticate } from "./api";
 import { useAuthStore } from "./store";
 
 export function AuthPage() {
-  const [params] = useSearchParams();
-  const isRegister = params.get("mode") === "register";
+  const location = useLocation();
+  const isRegister = location.pathname === "/register";
   const [role, setRole] = useState("customer");
   const [error, setError] = useState("");
   const setUser = useAuthStore((state) => state.setUser);

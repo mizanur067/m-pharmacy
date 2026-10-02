@@ -25,3 +25,15 @@ class Pharmacy(BaseModel):
 
     def __str__(self):
         return self.name
+
+
+class PharmacyEmployee(BaseModel):
+    pharmacy = models.ForeignKey(Pharmacy, on_delete=models.CASCADE, related_name="employees")
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="employee_profile")
+    display_name = models.CharField(max_length=160)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=("pharmacy", "user"), name="unique_pharmacy_employee")]
+
+    def __str__(self):
+        return self.display_name

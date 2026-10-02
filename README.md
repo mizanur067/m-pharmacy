@@ -43,4 +43,16 @@ pharmacy, inventory stock, and two demo accounts:
 | Customer | `customer@demo.pharmacy` | `DemoCustomer123!` |
 | Pharmacy owner | `owner@demo.pharmacy` | `DemoOwner123!` |
 
+Create the three demo medicine employees with:
+
+```powershell
+python manage.py create_employees
+```
+
+| Employee | Email | Password |
+| --- | --- | --- |
+| Employee 1 | `employee1@demo.pharmacy` | `DemoEmployee1123!` |
+| Employee 2 | `employee2@demo.pharmacy` | `DemoEmployee2123!` |
+| Employee 3 | `employee3@demo.pharmacy` | `DemoEmployee3123!` |
+
 Running `seed_demo` again updates the same records instead of creating duplicates.

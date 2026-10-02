@@ -1,6 +1,7 @@
 from rest_framework.routers import DefaultRouter
-from .views import PharmacyViewSet
+from django.urls import path
+from .views import OwnerDashboardView, PharmacyViewSet
 
 router = DefaultRouter()
 router.register("", PharmacyViewSet, basename="pharmacy")
-urlpatterns = router.urls
+urlpatterns = [path("dashboard/", OwnerDashboardView.as_view(), name="owner-dashboard"), *router.urls]

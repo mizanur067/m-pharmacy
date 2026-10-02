@@ -24,8 +24,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         return value
 
     def validate_role(self, value):
-        if value == User.Role.ADMIN:
-            raise serializers.ValidationError("Admin accounts cannot be self-registered.")
+        if value in (User.Role.ADMIN, User.Role.EMPLOYEE):
+            raise serializers.ValidationError("This role must be created by an administrator or pharmacy owner.")
         return value
 
     def create(self, validated_data):

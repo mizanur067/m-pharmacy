@@ -8,6 +8,8 @@ from apps.accounts.models import User
 from apps.catalog.models import Category, Manufacturer, Medicine
 from apps.inventory.models import PharmacyStock
 from apps.pharmacies.models import Pharmacy
+from apps.news.models import NewsArticle
+from django.utils import timezone
 
 
 class Command(BaseCommand):
@@ -112,7 +114,19 @@ class Command(BaseCommand):
                     "is_active": True,
                 },
             )
+        NewsArticle.objects.update_or_create(
+            slug="welcome-to-m-pharmacy",
+            defaults={
+                "title": "Welcome to M-Pharmacy",
+                "summary": "Simple, reliable access to everyday healthcare products.",
+                "body": "Browse our catalog, compare available stock, and place a convenient cash-on-delivery order.",
+                "author": owner,
+                "published_at": timezone.now(),
+                "is_active": True,
+            },
+        )
 
         self.stdout.write(self.style.SUCCESS("Demo data is ready."))
         self.stdout.write("Customer: customer@demo.pharmacy / DemoCustomer123!")
         self.stdout.write("Owner:    owner@demo.pharmacy / DemoOwner123!")
+        self.stdout.write("Employees are created with: python manage.py create_employees")

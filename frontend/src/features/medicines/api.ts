@@ -17,6 +17,13 @@ export async function getMedicines(search = ""): Promise<Medicine[]> {
   return data.results;
 }
 
+export async function getAvailableStocks() {
+  const { data } = await api.get<{ results: Array<{ id: string; medicine: string; price: string; pharmacy_name: string }> }>(
+    "/inventory/stocks/",
+  );
+  return data.results;
+}
+
 export async function getStocksForMedicine(medicine: string) {
   const { data } = await api.get<{ results: Array<{ id: string; price: string; quantity: number; pharmacy_name: string }> }>(
     "/inventory/stocks/", { params: { medicine, is_available: true } },

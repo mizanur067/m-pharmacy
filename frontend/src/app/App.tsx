@@ -14,6 +14,8 @@ export function App() {
           <Link to="/owner/inventory">Owner inventory</Link>
           <Link to="/owner/medicines/new">Upload medicine</Link>
           {user && <Link to="/cart">Cart</Link>}
+          {user && user.role === "customer" && <Link to="/orders">Orders</Link>}
+          {user && (user.role === "pharmacy_owner" || user.role === "employee") && <Link to="/owner/dashboard">Dashboard</Link>}
           {user ? <button className="nav-button" onClick={logout}>Sign out</button> : <><Link to="/login">Sign in</Link><Link className="nav-cta" to="/register">Join us</Link></>}
           <a href="http://localhost:8000/api/docs/" target="_blank" rel="noreferrer">API docs</a>
         </nav>

@@ -1,5 +1,5 @@
 from rest_framework import permissions, viewsets
-from apps.core.permissions import IsPharmacyOwner
+from apps.core.permissions import IsOwnerOrEmployee
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import MedicineFilter
 from .models import Category, Manufacturer, Medicine
@@ -32,7 +32,7 @@ class MedicineViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.action in ("create", "update", "partial_update", "destroy"):
-            return [IsPharmacyOwner()]
+            return [IsOwnerOrEmployee()]
         return [permissions.AllowAny()]
 
     def perform_create(self, serializer):

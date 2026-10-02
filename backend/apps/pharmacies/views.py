@@ -1,4 +1,7 @@
-from rest_framework import viewsets
+from django.db.models import Sum
+from rest_framework import permissions, viewsets
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from apps.core.permissions import IsPharmacyOwner
 from .models import Pharmacy
@@ -23,4 +26,26 @@ class PharmacyViewSet(viewsets.ModelViewSet):
         return [IsAuthenticated()]
 
     def perform_create(self, serializer):
+        if Pharmacy.objects.filter(owner=self.request.user).exists():
+            from rest_framework.exceptions import ValidationError
+            raise ValidationError("This owner already has a pharmacy.")
         serializer.save(owner=self.request.user)
+
+
+class OwnerDashboardView(APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        pharmacy = Pharmacy.objects.filter(owner=request.user).first()
+        if not pharmacy:
+            employee = getattr(request.user, "employee_profile", None)
+            pharmacy = employee.pharmacy if employee else None
+        if not pharmacy:
+            return Response({"pharmacy": None, "stock_count": 0, "units_available": 0, "low_stock": 0})
+        stocks = pharmacy.stocks.filter(is_active=True)
+        return Response({
+            "pharmacy": {"id": pharmacy.id, "name": pharmacy.name},
+            "stock_count": stocks.count(),
+            "units_available": stocks.aggregate(total=Sum("quantity"))["total"] or 0,
+            "low_stock": stocks.filter(quantity__lte=10).count(),
+        })

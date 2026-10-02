@@ -24,6 +24,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         CUSTOMER = "customer", "Customer"
         PHARMACY_OWNER = "pharmacy_owner", "Pharmacy owner"
         DOCTOR = "doctor", "Doctor"
+        EMPLOYEE = "employee", "Employee"
         ADMIN = "admin", "Admin"
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -41,4 +42,3 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
-
