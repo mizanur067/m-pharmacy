@@ -1,0 +1,8 @@
+python backend\manage.py runserver
+cd frontend
+npm run dev
+
+
+Role	Email	Password
+Customer	customer@demo.pharmacy	DemoCustomer123!
+Pharmacy owner	owner@demo.pharmacy	DemoOwner123!
