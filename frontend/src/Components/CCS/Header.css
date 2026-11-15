@@ -1,0 +1,130 @@
+
+.header_mpharmacy {
+  width: 100%;
+  min-height: 85px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo */
+.header_logo_mpharmacy {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+}
+
+.header_logo_mpharmacy h2 {
+  font-size: 30px;
+  color: #1768df;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.header_logo_mpharmacy h2 span {
+  color: #16ad70;
+}
+
+.header_icon_mpharmacy {
+  color: #16ad70;
+  font-size: 43px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* Navigation */
+.header_nav_mpharmacy {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.header_nav_mpharmacy button {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #1768df;
+  font-size: 19px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 10px 12px;
+  transition: 0.2s ease;
+}
+
+.header_nav_mpharmacy button:hover {
+  color: #16ad70;
+}
+
+/* Cart */
+.header_nav_mpharmacy .header_cart_mpharmacy {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 19px;
+}
+
+.header_cart_mpharmacy i {
+  font-size: 29px;
+}
+
+.header_cart_mpharmacy:hover i {
+  transform: translateY(-2px);
+  transition: 0.2s ease;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .header_mpharmacy {
+    min-height: 70px;
+    padding: 0 14px;
+  }
+
+  .header_logo_mpharmacy {
+    gap: 5px;
+  }
+
+  .header_logo_mpharmacy h2 {
+    font-size: 21px;
+  }
+
+  .header_icon_mpharmacy {
+    font-size: 32px;
+  }
+
+  .header_nav_mpharmacy {
+    gap: 8px;
+  }
+
+  .header_nav_mpharmacy button {
+    font-size: 13px;
+    padding: 8px 5px;
+  }
+
+  .header_nav_mpharmacy .header_cart_mpharmacy {
+    gap: 5px;
+    font-size: 13px;
+  }
+
+  .header_cart_mpharmacy i {
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header_logo_mpharmacy h2 {
+    font-size: 18px;
+  }
+
+  .header_nav_mpharmacy button {
+    font-size: 12px;
+  }
+}
