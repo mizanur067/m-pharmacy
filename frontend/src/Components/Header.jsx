@@ -17,7 +17,7 @@ const Header = () => {
             </div>
 
             <nav className="header_nav_mpharmacy">
-                <button onClick={() => navigate('/user-signup')}>
+                <button onClick={() => navigate('/user-login')}>
                     Login
                 </button>
 
